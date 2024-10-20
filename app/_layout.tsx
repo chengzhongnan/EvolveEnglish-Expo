@@ -31,6 +31,18 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen name="/screens/QuizScreen"
+          options={{
+            title: '阅读理解',
+            presentation: 'modal'
+          }}
+        />
+        <Stack.Screen name="/screens/ReadingCategoryScreen"
+          options={{ 
+            title: '阅读理解',
+            presentation: 'modal'
+          }} 
+        />
       </Stack>
     </ThemeProvider>
   );
