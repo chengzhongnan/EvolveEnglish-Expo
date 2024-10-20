@@ -9,13 +9,22 @@ const getToken = () => {
 };
 
 // 处理 fetch 请求，自动附加 token，并处理错误
-const fetchWithInterceptor = async (url: string, options = {}) => {
+const fetchWithInterceptor = async (url: string, options: RequestInit = {}) => {
   // 获取 token 并附加到 URL 参数中
   const token = getToken();
   const urlWithToken = token ? `${url}?token=${token}` : url;
 
+  // 设置 Accept-Encoding 头
+  const headers = {
+    'Accept-Encoding': 'gzip, deflate', // 明确指定接受的压缩类型
+    ...options.headers, // 合并其他可能已经存在的 headers
+  };
+
   try {
-    const response = await fetch(urlWithToken, options);
+    const response = await fetch(urlWithToken, {
+      ...options,
+      headers, // 使用合并后的 headers
+    });
 
     // 检查状态码是否为 200
     if (response.ok) {
