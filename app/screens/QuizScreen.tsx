@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, Text } from 'react-native';
 import QuizComponent from '@/components/QuizComponent';
 
 import { useRoute } from '@react-navigation/native';
@@ -48,7 +48,7 @@ export default function QuizScreen() {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       {articleContent ? (<QuizComponent id={id} name={name} content={articleContent} translate={translateContent} questions={questionData}/>) 
-      : (<p>Loading ...</p>)}
+      : (<Text>Loading ...</Text>)}
     </ScrollView>
   );
 }

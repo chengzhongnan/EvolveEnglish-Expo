@@ -11,21 +11,32 @@ type CardData = {
 
 export default function ReadingCategoryScreen() {
     const [configs, setConfigs] = useState<CardData[]>([]);
+    const router = useRouter(); // 使用 useRouter 钩子
 
     useEffect(() => {
       const fetchConfigs = async () => {
-        const data = await getMaterialConfigs();
-        setConfigs(data.types);
+        try {
+            const data = await getMaterialConfigs();
+            setConfigs(data.types);
+        }
+        catch(err: any) {
+            console.log(err);
+            router.push({
+                pathname: '/screens/ErrorMessageScreen',
+                params: {
+                    errorMessage: err.message,
+                }
+            })
+        }
       };
   
       fetchConfigs();
     }, []);
 
-    const router = useRouter(); // 使用 useRouter 钩子
-
     const handleQuizNavigation = async (name: string) => {
         // 随机从数据库中获取一个问题，并导航到 QuizScreen 页面
         const randId = Math.random() * 1000 >> 0;
+        console.log('-------------');
         router.push({
             pathname: '/screens/QuizScreen',
             params: { name, id: randId } // 传递 name 和 randId 参数

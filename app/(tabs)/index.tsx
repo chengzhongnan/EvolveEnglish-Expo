@@ -6,6 +6,7 @@ import { ScrollView, View, Text, ImageBackground } from 'react-native';
 import Header from '../../components/Header';
 import FeatureCard from '../../components/FeatureCard';
 import PopularCourse from '../../components/PopularCourse';
+import { Constant } from '../api/const';
 
 export default function HomeScreen() {
   const [hasNotice, setNotice] = useState(false);
@@ -21,7 +22,7 @@ export default function HomeScreen() {
       {hasNotice ? <Header /> : null}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <ImageBackground
-          source={{ uri: 'https://pub-3294fa67962142329433e7edea572259.r2.dev/619d0891-f60e-4724-b599-e95ac54b2a9c.png' }}
+          source={{ uri: Constant.resUrl + '/619d0891-f60e-4724-b599-e95ac54b2a9c.png' }}
           style={styles.banner}
           imageStyle={styles.bannerImage}
         >
@@ -35,17 +36,17 @@ export default function HomeScreen() {
           <FeatureCard
             title="单词学习"
             description="学习新的单词和短语"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/e8df879f-7354-4688-963b-ff07b5bc4705.png"
+            imageUrl= { Constant.resUrl +  "/e8df879f-7354-4688-963b-ff07b5bc4705.png"}
           />
           <FeatureCard
             title="选择填空"
             description="测试单词的理解程度"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/bafc9d4a-5176-4da4-83bc-fb7b50b973aa.png"
+            imageUrl={ Constant.resUrl + "/bafc9d4a-5176-4da4-83bc-fb7b50b973aa.png"}
           />
           <FeatureCard
             title="阅读理解"
             description="阅读文章回答问题"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/ac9e1fe6-0260-4a8c-b3c4-0d1904130d24.png"
+            imageUrl={ Constant.resUrl + "/ac9e1fe6-0260-4a8c-b3c4-0d1904130d24.png" }
             onPress={handleQuizNavigation}
           />
           
@@ -56,17 +57,17 @@ export default function HomeScreen() {
           <PopularCourse
             title="English: Intermediate"
             description="Course · 10 lessons"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/f3f81377-06a6-4c6a-ac51-de004be1da7b.png"
+            imageUrl={ Constant.resUrl + "/f3f81377-06a6-4c6a-ac51-de004be1da7b.png"}
           />
           <PopularCourse
             title="Advanced English"
             description="Course · 20 lessons"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/322bbf1b-b9c4-4183-8d9e-05b5e15503ef.png"
+            imageUrl={ Constant.resUrl + "/322bbf1b-b9c4-4183-8d9e-05b5e15503ef.png" }
           />
           <PopularCourse
             title="Business English"
             description="Course · 15 lessons"
-            imageUrl="https://pub-3294fa67962142329433e7edea572259.r2.dev/eb519062-ae08-4147-9e90-76e492100189.png"
+            imageUrl={ Constant.resUrl + "/eb519062-ae08-4147-9e90-76e492100189.png" }
           />
         </ScrollView>
       </ScrollView>
