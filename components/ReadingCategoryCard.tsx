@@ -4,12 +4,12 @@ import {TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 type ReadingCategoryComponentProps = {
     title: string;
     image: string;
-    onPress: (name: string) => void
+    onPress: () => void
 }
 
 const CardComponent: React.FC<ReadingCategoryComponentProps> = ({ title, image, onPress }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(title)} style={styles.cardContainer}>
+    <TouchableOpacity onPress={() => onPress()} style={styles.cardContainer}>
         <Image source={{ uri: image }} style={styles.image} />
         <Text style={styles.cardText}>{title}</Text>
     </TouchableOpacity>

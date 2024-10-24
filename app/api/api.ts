@@ -88,3 +88,35 @@ export const getReadingMaterial = async (type: string, id: string): Promise<GetR
         method: 'GET'
     });
 }
+
+interface getWordCategoryType {
+  "id": string,
+  "level": string,
+  "image": string
+}
+
+type getWordCategoryResponse = getWordCategoryType[]
+
+export const getWordCategory = async (): Promise<getWordCategoryResponse> => {
+  const endpoint = `${Constant.apiUrl}/getWordCategory`;
+    return fetchWithInterceptor(endpoint, {
+        method: 'GET'
+    });
+}
+
+interface getWordsRandomItemType {
+  id: number,
+  word: string,
+  translations: string,
+  phrases: string,
+  level: string
+}
+
+type getWordsRandomResponse = getWordsRandomItemType[];
+
+export const getWordsRandom = async (id: string, count: number): Promise<getWordsRandomResponse> => {
+  const endpoint = `${Constant.apiUrl}/getWordsRandom?tableid=${id}&count=${count}`;
+  return fetchWithInterceptor(endpoint, {
+      method: 'GET'
+  });
+}

@@ -17,6 +17,10 @@ export default function HomeScreen() {
     router.push('/screens/ReadingCategoryScreen');
   };
 
+  const handleWordNavigation = () => {
+    router.push('/screens/WordCategoryScreen');
+  }
+
   return (
     <View style={styles.container}>
       {hasNotice ? <Header /> : null}
@@ -37,6 +41,7 @@ export default function HomeScreen() {
             title="单词学习"
             description="学习新的单词和短语"
             imageUrl= { Constant.resUrl +  "/e8df879f-7354-4688-963b-ff07b5bc4705.png"}
+            onPress={handleWordNavigation}
           />
           <FeatureCard
             title="选择填空"

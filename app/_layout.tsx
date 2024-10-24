@@ -38,12 +38,30 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen name="/screens/ReadingCategoryScreen"
-          options={{ 
+          options={{
             title: '阅读理解',
             presentation: 'modal'
-          }} 
+          }}
         />
         <Stack.Screen name="/screens/ErrorMessageScreen" />
+        <Stack.Screen name="/screens/WordCategoryScreen"
+          options={{
+            title: '单词学习',
+            presentation: 'modal'
+          }}
+        ></Stack.Screen>
+        <Stack.Screen name='/screens/LearningWordScreen'
+          options={{
+            title: '单词学习',
+            presentation: 'modal'
+          }}
+        ></Stack.Screen>
+        <Stack.Screen name='/screens/DictionaryScreen'
+           options={{
+            title: '单词学习',
+            presentation: 'modal'
+          }}         
+        ></Stack.Screen>
       </Stack>
     </ThemeProvider>
   );

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import CardComponent from '@/components/ReadingCategoryCard';
-import { getMaterialConfigs } from '../api/api';
+import { getWordCategory } from '../api/api';
 import { useRouter } from 'expo-router'; // 导入 useRouter
 
 type CardData = {
+    id: string;
     name: string;
     image: string;
 }
 
-export default function ReadingCategoryScreen() {
+export default function WordCategoryScreen() {
     const [configs, setConfigs] = useState<CardData[]>([]);
     const router = useRouter(); // 使用 useRouter 钩子
 
     useEffect(() => {
       const fetchConfigs = async () => {
         try {
-            const data = await getMaterialConfigs();
-            setConfigs(data.types);
+            const data = await getWordCategory();
+            setConfigs(data.map(x => ({
+                id: x.id,
+                name: x.level,
+                image: x.image
+            })));
         }
         catch(err: any) {
             console.log(err);
@@ -33,12 +38,10 @@ export default function ReadingCategoryScreen() {
       fetchConfigs();
     }, []);
 
-    const handleQuizNavigation = async (cardData: CardData) => {
-        // 随机从数据库中获取一个问题，并导航到 QuizScreen 页面
-        const randId = Math.random() * 1000 >> 0;
+    const handleWordCategoryNavigation = async (cardData: CardData) => {
         router.push({
-            pathname: '/screens/QuizScreen',
-            params: { name: cardData.name, id: randId } // 传递 name 和 randId 参数
+            pathname: '/screens/LearningWordScreen',
+            params: { id: cardData.id }
         });
     };
 
@@ -48,12 +51,12 @@ export default function ReadingCategoryScreen() {
     return (
         <ScrollView contentContainerStyle={styles.contentContainer}>
             <View style={styles.header}>
-                <Text style={styles.title}>Hi, what would you like to read today?</Text>
+                <Text style={styles.title}>Hi, what would you like to study today?</Text>
             </View>
             <View style={styles.cardGrid}>
                 {configs ? configs.map((card, index) => (
                     <View key={index} style={[styles.cardWrapper, { width: cardWidth }]}>
-                        <CardComponent title={card.name} image={card.image} onPress={() => handleQuizNavigation(card)} />
+                        <CardComponent title={card.name} image={card.image} onPress={() => handleWordCategoryNavigation(card)} />
                     </View>
                 )) : (<p>Loading configs...</p>)
             }
